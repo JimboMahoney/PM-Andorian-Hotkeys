@@ -265,9 +265,9 @@ Goto, end_hotkey_with_error
   Send {Tab 3}%clipboard%{Enter}
   Goto, End_hotkey
   
-  ;----------------------------------------------------------------------
+  ;-------------------------------------------------------------------------
 ; [Windows Key + p] PriceList Update from clipboard or highlighted selection
-;----------------------------------------------------------------------
+;---------------------------------------------------------------------------
 #p::
 create_progress_bar("PriceList update")
 add_progress_step("Opening web page")
@@ -320,37 +320,80 @@ Goto, end_hotkey
   Send {Tab 2}{Down 2}{Enter}
   Goto, End_hotkey
 
-  ;----------------------------------------------------------------------
+  ;-----------------------------------------------------------------------
 ; [Windows Key + s] Stock Requests from clipboard or highlighted selection
-;----------------------------------------------------------------------
+;-------------------------------------------------------------------------
 #s::
-create_progress_bar("Stock Requests")
-add_progress_step("Opening web page")
-add_progress_step("Querying part number")
-copy_to_clipboard()
-clipboard := RegexReplace(clipboard, "[[:blank:]]") ; remove tabs and spaces
-step_progress_bar()
-Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
+  create_progress_bar("Stock Requests")
+  add_progress_step("Opening web page")
+  add_progress_step("Querying part number")
+  copy_to_clipboard()
+
+  matches =			; Clear old matches.
+  
+  ; there's no native function to parse several regex matches, so one has to
+  ; reuse the `begin` position parameter to check the full string
+  begin = 1
+  While begin := RegExMatch(clipboard, "([A-Z]{3}-[0-9]{5})" ;look for level 1 code of 3 letters and 5 digits
+                            , match
+                            , begin + StrLen(match))
+  {
+    part_code%A_Index% := match1
+    matches := A_Index
+  }
+  Loop, %matches%
+  {
+    add_progress_step("Querying Part Code")
+  }
+  
+  ; open a new window for each match
+  Loop, %matches%
+  {
+    step_progress_bar()
+    part := part_code%A_Index%
+    Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
 
 
-WinWait, Stock Requests,,100
-if ErrorLevel
-{
-  progress_error(A_LineNumber)
-  Goto, end_hotkey
-}
-WinActivate
-;while (A_Cursor = "AppStarting")
+  WinWait, Stock Requests,,100
+  if ErrorLevel
+    {
+    progress_error(A_LineNumber)
+    Goto, end_hotkey
+    }
+  WinActivate
+  ;while (A_Cursor = "AppStarting")
   Sleep,500
-step_progress_bar()
-SetKeyDelay 10
-Send {tab}{down 2}{tab}%clipboard%{tab}{tab}{Enter}
-Goto, end_hotkey  
+  step_progress_bar()
+  SetKeyDelay 10
+  Send {tab}{down}{tab}%part%{tab}{Enter}
+  }
+  
+  ; If there are no matches for level 1 codes, assume the selection is
+  ; a level 10 code.
+  if matches !=
+    Goto, End_hotkey  ; level 1 code was in clipboard, so end hotkey.
+  
+  clipboard:=strip(clipboard)
+  Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
+
+  WinWait, Stock Requests,,100
+  if ErrorLevel
+    {
+    progress_error(A_LineNumber)
+    Goto, end_hotkey
+    }
+  WinActivate
+  ;while (A_Cursor = "AppStarting")
+  Sleep,500
+  step_progress_bar()
+  SetKeyDelay 10
+  Send {tab}{down}{down}{tab}%clipboard%{tab}{tab}{Enter}
+  Goto, end_hotkey   
   
   
   ;----------------------------------------------------------------------
 ; [Windows Key + t] Ticket search from clipboard or Outlook e-mail title
-;----------------------------------------------------------------------
+;------------------------------------------------------------------------
 #t::
 create_progress_bar("Ticket search")
 add_progress_step("Extracting Ticket ID")
