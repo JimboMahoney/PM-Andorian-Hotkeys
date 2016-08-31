@@ -1,8 +1,8 @@
 ; See README.md for shortcuts in this script
 
-;----------------------------------------------------------------------
+;------------
 ; Boilerplate
-;----------------------------------------------------------------------
+;------------
 #NoEnv ; performance and compatibility
 SetWorkingDir %A_ScriptDir%  ; consistent starting directory.
 
@@ -12,9 +12,9 @@ SetWorkingDir %A_ScriptDir%  ; consistent starting directory.
 #Include lib\progress_bar.ahk
 #Include lib\saleslogix.ahk
 
-;----------------------------------------------------------------------
+;------------------------
 ; [Windows Key + /?] Help
-;----------------------------------------------------------------------
+;------------------------
 #/::
 Gui, Destroy
 FileRead, readme, README.md
@@ -37,9 +37,9 @@ Return
 
 
 
-;----------------------------------------------------------------------
-; [Windows Key + b] BOM search from clipboard or highlighted selection
-;----------------------------------------------------------------------
+;-----------------------------------------------------------------------------
+; [Windows Key + b] BoMs & CoGs search from clipboard or highlighted selection
+;-----------------------------------------------------------------------------
 #b::
 create_progress_bar("BOM search")
 add_progress_step("Opening web page")
@@ -64,9 +64,9 @@ SetKeyDelay 100
 Send {tab 4}%clipboard%{tab}{Enter}
 Goto, end_hotkey
 
-;----------------------------------------------------------------------
+;-----------------------------------------------------------------------
 ; [Windows Key + i] Install Ticket search from SLX Account in clipboard 
-;----------------------------------------------------------------------
+;-----------------------------------------------------------------------
 #i::
 create_progress_bar("System Ticket search")
 add_progress_step("Searching for System Ticket...")
@@ -78,9 +78,9 @@ Goto, end_hotkey
 
 
 
-;----------------------------------------------------------------------
+;---------------------------------------------------------------
 ; [Windows Key + m] Login to RMA WIP and open RMA from clipboard
-;----------------------------------------------------------------------
+;---------------------------------------------------------------
 #m::
 
 ; FIXME: Login credentials are assumed to be  correct.  If login details
@@ -192,9 +192,9 @@ else
 SetKeyDelay, -1
 Goto, End_hotkey
 
-;----------------------------------------------------------------------
+;------------------------------
 ; [Windows Key + n] Text Editor
-;----------------------------------------------------------------------
+;------------------------------
 #n::
 create_progress_bar("Launch Text Editor")
 ErrorLevel = ERROR
@@ -265,7 +265,7 @@ Goto, end_hotkey_with_error
   Send {Tab 3}%clipboard%{Enter}
   Goto, End_hotkey
   
-  ;-------------------------------------------------------------------------
+;---------------------------------------------------------------------------
 ; [Windows Key + p] PriceList Update from clipboard or highlighted selection
 ;---------------------------------------------------------------------------
 #p::
@@ -293,9 +293,9 @@ Send {tab}%clipboard%{tab}{Enter}
 Goto, end_hotkey
   
   
-  ;------------------------------------------------------------------------------
+;-----------------------------------------------------------------------------------------------
 ; [Windows Key + q] Price Quoted / Shipping date from SO from clipboard or highlighted selection
-;--------------------------------------------------------------------------------
+;-----------------------------------------------------------------------------------------------
 #q::
   create_progress_bar("Price Quoted / Ship date search")
   copy_to_clipboard()
@@ -391,9 +391,9 @@ Goto, end_hotkey
   Goto, end_hotkey   
   
   
-  ;----------------------------------------------------------------------
+;-----------------------------------------------------------------------
 ; [Windows Key + t] Ticket search from clipboard or Outlook e-mail title
-;------------------------------------------------------------------------
+;-----------------------------------------------------------------------
 #t::
 create_progress_bar("Ticket search")
 add_progress_step("Extracting Ticket ID")
@@ -431,9 +431,9 @@ step_progress_bar()
 open_ticket(ticket)
 Goto, end_hotkey
 
-;----------------------------------------------------------------------
+;-----------------------------
 ; [Windows Key + V] Date paste
-;----------------------------------------------------------------------
+;-----------------------------
 #v::
 
 ;FIXME - Pressing Cancel on dialogue box results in blank name in AHK.ini. It should result in no file being created.

@@ -51,7 +51,7 @@ Suggestions should be posted as issues here => https://github.com/JimboMahoney/P
 Installation
 ------------
 *Google Chrome* is recommended, since it is used for development and testing.
-Please report any issues you may encounter with other browsers.
+
 
 1.  Install <a href="http://ahkscript.org/" target="_blank">Autohotkey</a> (Big blue Download button on top right).
 
@@ -71,7 +71,11 @@ Please report any issues you may encounter with other browsers.
 
 Create your own hotkeys
 -----------------------
-In the same directory as main.ahk, create your ahk file and edit
+1) Edit the main.AHK file (at the risk of breaking existing hotkeys if not done properly)
+
+Or
+
+2) In the same directory as main.ahk, create your ahk file and edit
 [main.ahk](PM-Andorian-Hotkeys/blob/master/main.ahk#L18) to `#Include` it
 
 
