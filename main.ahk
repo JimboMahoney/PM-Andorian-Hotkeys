@@ -334,7 +334,7 @@ Goto, end_hotkey
   ; there's no native function to parse several regex matches, so one has to
   ; reuse the `begin` position parameter to check the full string
   begin = 1
-  While begin := RegExMatch(clipboard, "([A-Z]{3}-[0-9]{5})" ;look for level 1 code of 3 letters and 5 digits
+  While begin := RegExMatch(clipboard, "A([A-Z]{3}-[0-9]{5})" ;look for level 1 code of 3 letters and 5 digits
                             , match
                             , begin + StrLen(match))
   {
