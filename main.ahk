@@ -47,21 +47,21 @@ add_progress_step("Querying part number")
 copy_to_clipboard()
 clipboard := RegexReplace(clipboard, "[[:blank:]]") ; remove tabs and spaces
 step_progress_bar()
-Run http://andor.andortech.net/cm.mccann/BOM and COGS/
+Run http://andor.andortech.net/cm.mccann/BOM and COGS/?whproduct=10%clipboard%&action=bom
 
 
-WinWait, Shamrock Components,,100
-if ErrorLevel
-{
-  progress_error(A_LineNumber)
-  Goto, end_hotkey
-}
-WinActivate
-;while (A_Cursor = "AppStarting")
-  Sleep,500
-step_progress_bar()
-SetKeyDelay 100
-Send {tab 4}%clipboard%{tab}{Enter}
+;WinWait, Shamrock Components,,100
+;if ErrorLevel
+;{
+;  progress_error(A_LineNumber)
+;  Goto, end_hotkey
+;}
+;WinActivate
+;;while (A_Cursor = "AppStarting")
+;  Sleep,500
+;step_progress_bar()
+;SetKeyDelay 100
+;Send {tab 4}%clipboard%{tab}{Enter}
 Goto, end_hotkey
 
 ;-----------------------------------------------------------------------
@@ -252,6 +252,7 @@ Goto, end_hotkey_with_error
   add_progress_step("Querying serial# '" . clipboard . "'")
   add_progress_step("Waiting for Enter Values window")
   Run http://andor.oxinst.com/reports/ViewReport.aspx?ReportPath=I:/Intranet/Reports/Sales+Information/Utilities/Orders+with+serial+no.rpt
+  ;Run http://andor.oxinst.com/cm.mccann/Sales Orders/serialSearch.asp?serial_no=%clipboard% 
   step_progress_bar()
   WinWait, Report Viewer,,30
   If ErrorLevel
@@ -354,7 +355,7 @@ Goto, end_hotkey
     Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
 
 
-  WinWait, Stock Requests,,100
+  WinWait, Stock Requests,,1000
   if ErrorLevel
     {
     progress_error(A_LineNumber)
@@ -362,7 +363,7 @@ Goto, end_hotkey
     }
   WinActivate
   ;while (A_Cursor = "AppStarting")
-  Sleep,500
+  Sleep,1000
   step_progress_bar()
   SetKeyDelay 10
   Send {tab}{down}{tab}%part%{tab}{Enter}
@@ -376,7 +377,7 @@ Goto, end_hotkey
   clipboard:=strip(clipboard)
   Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
 
-  WinWait, Stock Requests,,100
+  WinWait, Stock Requests,,1000
   if ErrorLevel
     {
     progress_error(A_LineNumber)
