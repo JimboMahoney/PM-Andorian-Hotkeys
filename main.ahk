@@ -50,13 +50,13 @@ step_progress_bar()
 Run http://andor.andortech.net/cm.mccann/BOM and COGS/?whproduct=10%clipboard%&action=bom
 
 
-;WinWait, Shamrock Components,,100
+WinWait, Shamrock Components,,100
 ;if ErrorLevel
 ;{
 ;  progress_error(A_LineNumber)
 ;  Goto, end_hotkey
 ;}
-;WinActivate
+WinActivate
 ;;while (A_Cursor = "AppStarting")
 ;  Sleep,500
 ;step_progress_bar()
@@ -352,8 +352,16 @@ Goto, end_hotkey
   {
     step_progress_bar()
     part := part_code%A_Index%
-    Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
-
+	IfWinExist, Stock Requests
+		{
+		WinActivate
+		Send ^t
+		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
+		}
+	Else
+		{
+		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
+		}
 
   WinWait, Stock Requests,,1000
   if ErrorLevel
@@ -375,7 +383,16 @@ Goto, end_hotkey
     Goto, End_hotkey  ; level 1 code was in clipboard, so end hotkey.
   
   clipboard:=strip(clipboard)
-  Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
+  IfWinExist, Stock Requests
+		{
+		WinActivate
+		Send ^t
+		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
+		}
+	Else
+		{
+		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
+		}
 
   WinWait, Stock Requests,,1000
   if ErrorLevel
