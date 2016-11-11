@@ -63,11 +63,12 @@ Installation
     After login, enter your e-mail and name for Git.
 
 5.  Login to your GitHub account on <a href="https://github.com/JimboMahoney/PM-Andorian-Hotkeys" target="_blank">this</a> webpage and 
-    [clone or download](github-windows://openRepo/https://github.com/JimboMahoney/PM-Andorian-Hotkeys), selecting "Open in Desktop" <img src="https://cloud.githubusercontent.com/assets/7777844/20211125/f87db180-a7f4-11e6-8885-f5ec402212ee.png"
- alt="download" title="clone" align="center" /> and choosing a sensible directory on your machine and remembering where you save it!
+    [clone or download](github-windows://openRepo/https://github.com/JimboMahoney/PM-Andorian-Hotkeys), selecting "Open in Desktop" and choosing a sensible directory on your machine and remembering where you save it!
+	<img src="https://cloud.githubusercontent.com/assets/7777844/20211125/f87db180-a7f4-11e6-8885-f5ec402212ee.png"
+ alt="download" title="clone" align="center" /> <br> 
 
 6.  Have the script startup automatically in Windows by
-    making a shortcut to `main.ahk` (in the GitHub, Andorian Hotkeys directory) in your Windows start menu > Startup folder
+    making a shortcut to `main.ahk` (in the GitHub, Andorian Hotkeys directory) in your Windows start menu > Startup folder. This is probably easiest by RIGHT-clicking and dragging the main.ahk into the Start Menu, All Programs, Startup. When you let go of the right mouse button, select "Create Shortcut Here"
 
 
 Create your own hotkeys
