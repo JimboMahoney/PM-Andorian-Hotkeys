@@ -53,7 +53,7 @@ Installation
 *Google Chrome* is recommended, since it is used for development and testing.
 
 
-1.  Install <a href="http://ahkscript.org/" target="_blank">Autohotkey</a> (Big blue Download button on top right).
+1.  Install <a target="_blank" href="http://ahkscript.org/" >Autohotkey</a> (Big blue Download button on top right).
 
 2.  Install <a href="http://windows.github.com/" target="_blank">GitHub for Windows</a>
 
