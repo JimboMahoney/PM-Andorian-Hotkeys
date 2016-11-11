@@ -63,7 +63,7 @@ Installation
     After login, enter your e-mail and name for Git.
 
 5.  Login to your GitHub account on <a href="https://github.com/JimboMahoney/PM-Andorian-Hotkeys" target="_blank">this</a> webpage and 
-    [clone or download](github-windows://openRepo/https://github.com/JimboMahoney/PM-Andorian-Hotkeys), selecting "Open in Desktop" and choosing a sensible directory on your machine and remembering where you save it!
+    [clone or download](github-windows://openRepo/https://github.com/JimboMahoney/PM-Andorian-Hotkeys), selecting "Open in Desktop" and choosing a sensible directory on your machine and remembering where you save it!<br>
 	<img src="https://cloud.githubusercontent.com/assets/7777844/20211125/f87db180-a7f4-11e6-8885-f5ec402212ee.png"
  alt="download" title="clone" align="center" /> <br> 
 
