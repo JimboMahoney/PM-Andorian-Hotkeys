@@ -363,7 +363,7 @@ Goto, end_hotkey
 		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
 		}
 
-  WinWait, Stock Requests,,1000
+  WinWait, Stock Requests,,2000
   if ErrorLevel
     {
     progress_error(A_LineNumber)
@@ -394,7 +394,7 @@ Goto, end_hotkey
 		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
 		}
 
-  WinWait, Stock Requests,,1000
+  WinWait, Stock Requests,,2000
   if ErrorLevel
     {
     progress_error(A_LineNumber)
@@ -402,7 +402,7 @@ Goto, end_hotkey
     }
   WinActivate
   ;while (A_Cursor = "AppStarting")
-  Sleep,500
+  Sleep,1000
   step_progress_bar()
   SetKeyDelay 10
   Send {tab}{down}{down}{tab}%clipboard%{tab}{tab}{Enter}
