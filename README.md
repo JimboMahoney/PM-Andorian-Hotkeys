@@ -26,6 +26,8 @@ Usage
 
 `⊞ Win`+`I` Open SalesLogix System / Installation ticket from SLX Account (copied to clipboard)
 
+`⊞ Win`+ SHIFT + `I` Open SalesLogix Photostimulation Installation ticket from SLX Account (copied to clipboard)
+
 `⊞ Win`+`M` Launch WIP RMA database (automatic login) and optionally opens RMA (copied to clipboard)
 
 `⊞ Win`+`N` Opens a text editor - either Emacs, Notepad++ or Notepad

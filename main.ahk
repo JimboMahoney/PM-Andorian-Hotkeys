@@ -75,7 +75,16 @@ step_progress_bar()
 open_systemticket()
 Goto, end_hotkey
 
-
+;------------------------------------------------------------------------------
+; [Windows Key + SHIFT + i] PS Install Ticket search from SLX Account in clipboard 
+;------------------------------------------------------------------------------
+#+i::
+create_progress_bar("System Ticket search")
+add_progress_step("Searching for System Ticket...")
+;copy_to_clipboard()
+step_progress_bar()
+open_PSsystemticket()
+Goto, end_hotkey
 
 
 ;---------------------------------------------------------------

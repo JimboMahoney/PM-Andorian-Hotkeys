@@ -127,6 +127,40 @@ open_systemticket()
     Send !o
 }
 
+open_PSsystemticket()
+{
+    If !_get_Saleslogix_window()
+      return
+    WinMenuSelectItem,,,Lookup,Tickets,Advanced Lookup
+	SetKeyDelay, -1
+	WinWait, Advanced Lookup,,10
+    if ErrorLevel
+        return
+    WinActivate
+    Send {tab}
+	Send %clipboard%
+	Sleep 500
+	SetKeyDelay, 50
+	Send {tab}{tab}{tab}
+	SetKeyDelay, -1
+	Send SERVICE
+	Sleep 100
+	SetKeyDelay, 20
+	Send {tab}
+	SetKeyDelay, -1
+	Send PHOTOSTIMULATION
+	Sleep 100
+	SetKeyDelay, 20
+	Send {tab}
+	SetKeyDelay, -1
+	Send INSTALLATION
+	SetKeyDelay, 10
+	WinWait, Advanced Lookup,,10
+    if ErrorLevel
+        return
+    WinActivate
+    Send !o
+}
 
 open_ticket(_ticket)
 {
