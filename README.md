@@ -44,6 +44,8 @@ Usage
 
 `⊞ Win`+`V` Paste an SLX comment template for updating Tickets (Name, Date, Summary, Original E-mail)
 
+`⊞ Win`+`W` "Where Used" - Finds Level 10 codes containing the copied or highlighted Level 1 code
+
 `⊞ Win`+`Z` Bugzilla search (highlighted selection or copied to clipboard)
 
 Suggestions should be posted as issues here => https://github.com/JimboMahoney/PM-Andorian-Hotkeys/issues

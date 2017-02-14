@@ -488,7 +488,32 @@ Send ***************************************************************************
 SetKeyDelay, 10			; reset to default value
 Goto, end_hotkey
 
+;-----------------------------------------------------------------------------
+; [Windows Key + w] Where Used search from clipboard or highlighted selection
+;-----------------------------------------------------------------------------
+#w::
+create_progress_bar("Where Used search")
+add_progress_step("Opening web page")
+add_progress_step("Querying part number")
+copy_to_clipboard()
+clipboard := RegexReplace(clipboard, "[[:blank:]]") ; remove tabs and spaces
+step_progress_bar()
+Run http://andor.andortech.net/cm.mccann/BOM and COGS/?whproduct=01%clipboard%&action=whereused
 
+
+WinWait, Shamrock Components,,100
+;if ErrorLevel
+;{
+;  progress_error(A_LineNumber)
+;  Goto, end_hotkey
+;}
+WinActivate
+;;while (A_Cursor = "AppStarting")
+;  Sleep,500
+;step_progress_bar()
+;SetKeyDelay 100
+;Send {tab 4}%clipboard%{tab}{Enter}
+Goto, end_hotkey
 
 
 
