@@ -45,6 +45,7 @@ create_progress_bar("BOM search")
 add_progress_step("Opening web page")
 add_progress_step("Querying part number")
 copy_to_clipboard()
+StringUpper clipboard,clipboard ;convert to uppercase
 clipboard := RegexReplace(clipboard, "[[:blank:]]") ; remove tabs and spaces
 step_progress_bar()
 Run http://andor.andortech.net/cm.mccann/BOM and COGS/?whproduct=10%clipboard%&action=bom
