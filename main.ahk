@@ -88,9 +88,9 @@ open_PSsystemticket()
 Goto, end_hotkey
 
 
-;---------------------------------------------------------------
-; [Windows Key + m] Login to RMA WIP and open RMA from clipboard
-;---------------------------------------------------------------
+;----------------------------------------------------------------------------------------
+; [Windows Key + m] Login to RMA WIP and open RMA from clipboard or highlighted selection
+;----------------------------------------------------------------------------------------
 #m::
 
 ; FIXME: Login credentials are assumed to be  correct.  If login details
@@ -128,7 +128,7 @@ if RMA_MENU = NONE_VALUE
     Goto, end_hotkey
   }
 }
-
+copy_to_clipboard()
 Run C:\vb6\Andor\Andor.exe
 WinWait, Login,,40
 if ErrorLevel
