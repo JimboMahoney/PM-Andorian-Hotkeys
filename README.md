@@ -17,8 +17,8 @@ NOTE - This is a fork from Pariksheet's (GitHub name Omsai) original work - I've
 LIMITATIONS - Due to different users having different layouts for WIP Tracking, Win + M may require user-specific customisation.
 
 
-Usage
------------
+Usage - version 3rd March 2017
+------------------------------
 
 `⊞ Win`+`?` shows the hotkeys active in this script
 
