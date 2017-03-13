@@ -17,8 +17,8 @@ NOTE - This is a fork from Pariksheet's (GitHub name Omsai) original work - I've
 LIMITATIONS - Due to different users having different layouts for WIP Tracking, Win + M may require user-specific customisation.
 
 
-Usage - version 3rd March 2017
-------------------------------
+Usage
+-----------
 
 `⊞ Win`+`?` shows the hotkeys active in this script
 
@@ -50,7 +50,7 @@ Usage - version 3rd March 2017
 
 Suggestions should be posted as issues here => https://github.com/JimboMahoney/PM-Andorian-Hotkeys/issues
 
-
+[Version = 1st March 2017]
 
 Installation
 ------------
