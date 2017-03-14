@@ -51,7 +51,7 @@ step_progress_bar()
 Run http://andor.andortech.net/cm.mccann/BOM and COGS/?whproduct=10%clipboard%&action=bom
 
 
-WinWait, Shamrock Components,,100
+WinWait, Shamrock Components,,5
 ;if ErrorLevel
 ;{
 ;  progress_error(A_LineNumber)
@@ -130,7 +130,7 @@ if RMA_MENU = NONE_VALUE
 }
 copy_to_clipboard()
 Run C:\vb6\Andor\Andor.exe
-WinWait, Login,,40
+WinWait, Login,,5
 if ErrorLevel
 {
   return
@@ -140,7 +140,7 @@ else
   WinActivate
   Send %RMA_USER%{tab}%RMA_PASS%{tab}{Enter}
   
-  WinWait, Andor Technology,,500
+  WinWait, Andor Technology,,5
   if ErrorLevel
   {
     return
@@ -159,7 +159,7 @@ else
 	StringReplace, clipboard, clipboard,] ;Remove trailing ] sometimes found in SLX RMA references
 	Send %clipboard%{Enter}
     
-    WinWait, Andor (Live),,10
+    WinWait, Andor (Live),,5
     if ErrorLevel
     {
       return
@@ -182,7 +182,7 @@ else if RMA_MENU = 4
 	StringReplace, clipboard, clipboard,] ;Remove trailing ] sometimes found in SLX RMA references
 	Send %clipboard%{Enter}
     
-    WinWait, Andor (Live),,10
+    WinWait, Andor (Live),,5
     if ErrorLevel
     {
       return
@@ -264,7 +264,7 @@ Goto, end_hotkey_with_error
   Run http://andor.oxinst.com/reports/ViewReport.aspx?ReportPath=I:/Intranet/Reports/Sales+Information/Utilities/Orders+with+serial+no.rpt
   ;Run http://andor.oxinst.com/cm.mccann/Sales Orders/serialSearch.asp?serial_no=%clipboard% 
   step_progress_bar()
-  WinWait, Report Viewer,,30
+  WinWait, Report Viewer,,5
   If ErrorLevel
   {
     progress_error(A_LineNumber, "Browser timeout")    
@@ -289,7 +289,7 @@ step_progress_bar()
 Run http://andor.oxinst.com/sageutils/pricelist/index.asp?
 
 
-WinWait, PriceList Update,,100
+WinWait, PriceList Update,,5
 if ErrorLevel
 {
   progress_error(A_LineNumber)
@@ -317,7 +317,7 @@ Goto, end_hotkey
   add_progress_step("Waiting for Enter Values window")
   Run http://andor.andortech.net/reports/ViewReport.aspx?ReportPath=I:/Intranet/Reports/Sales+Information/Utilities/shipping_invoice_sub_report.rpt
   step_progress_bar()
-  WinWait, Report Viewer,,30
+  WinWait, Report Viewer,,5
   If ErrorLevel
   {
     progress_error(A_LineNumber, "Browser timeout")    
@@ -373,7 +373,7 @@ Goto, end_hotkey
 		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
 		}
 
-  WinWait, Stock Requests,,2000
+  WinWait, Stock Requests,,5
   if ErrorLevel
     {
     progress_error(A_LineNumber)
@@ -381,7 +381,7 @@ Goto, end_hotkey
     }
   WinActivate
   ;while (A_Cursor = "AppStarting")
-  Sleep,1000
+  Sleep,2000
   step_progress_bar()
   SetKeyDelay 10
   Send {tab}{down}{tab}%part%{tab}{Enter}
@@ -404,7 +404,7 @@ Goto, end_hotkey
 		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
 		}
 
-  WinWait, Stock Requests,,2000
+  WinWait, Stock Requests,,5
   if ErrorLevel
     {
     progress_error(A_LineNumber)
@@ -412,7 +412,7 @@ Goto, end_hotkey
     }
   WinActivate
   ;while (A_Cursor = "AppStarting")
-  Sleep,1000
+  Sleep,2000
   step_progress_bar()
   SetKeyDelay 10
   Send {tab}{down}{down}{tab}%clipboard%{tab}{tab}{Enter}
@@ -502,7 +502,7 @@ step_progress_bar()
 Run http://andor.andortech.net/cm.mccann/BOM and COGS/?whproduct=01%clipboard%&action=whereused
 
 
-WinWait, Shamrock Components,,100
+WinWait, Shamrock Components,,5
 ;if ErrorLevel
 ;{
 ;  progress_error(A_LineNumber)

@@ -39,7 +39,7 @@ _ignore_Saleslogix_refresh()
     ; operation against supplanted records
     
     global SetTitleMatchMode
-    WinWait, Confirm,,0.1
+    WinWait, Confirm,,5
     
     ; Ignore ErrorLevel from WinWait ... No prompt Window, so nothing to do
     if !ErrorLevel
@@ -84,7 +84,7 @@ _get_Saleslogix_window()
     If ! _unminimize_Saleslogix_window()
       Return 0
     SetTitleMatchMode, RegEx
-    WinWait,Saleslogix,,10,(Server)|(Client)
+    WinWait,Saleslogix,,5,(Server)|(Client)
     if ErrorLevel
       Return 0
     WinActivate
@@ -98,7 +98,7 @@ open_systemticket()
       return
     WinMenuSelectItem,,,Lookup,Tickets,Advanced Lookup
 	SetKeyDelay, -1
-	WinWait, Advanced Lookup,,10
+	WinWait, Advanced Lookup,,5
     if ErrorLevel
         return
     WinActivate
@@ -120,7 +120,7 @@ open_systemticket()
 	SetKeyDelay, -1
 	Send INSTALLATION
 	SetKeyDelay, 10
-	WinWait, Advanced Lookup,,10
+	WinWait, Advanced Lookup,,5
     if ErrorLevel
         return
     WinActivate
@@ -133,7 +133,7 @@ open_PSsystemticket()
       return
     WinMenuSelectItem,,,Lookup,Tickets,Advanced Lookup
 	SetKeyDelay, -1
-	WinWait, Advanced Lookup,,10
+	WinWait, Advanced Lookup,,5
     if ErrorLevel
         return
     WinActivate
@@ -155,7 +155,7 @@ open_PSsystemticket()
 	SetKeyDelay, -1
 	Send INSTALLATION
 	SetKeyDelay, 10
-	WinWait, Advanced Lookup,,10
+	WinWait, Advanced Lookup,,5
     if ErrorLevel
         return
     WinActivate
@@ -170,7 +170,7 @@ open_ticket(_ticket)
     SetKeyDelay, -1
     Send %_ticket%
     SetKeyDelay, 10		; reset to default value
-    WinWait, Lookup Ticket,,10
+    WinWait, Lookup Ticket,,5
     if ErrorLevel
         return
     WinActivate
@@ -184,7 +184,7 @@ open_contact_by_email(_email)
       return
     WinMenuSelectItem,,,Lookup,Contacts,E-mail
     Send %_email%{tab}{enter}
-    WinWait, Lookup Contact,,10
+    WinWait, Lookup Contact,,5
     if ErrorLevel
         return
     WinActivate
@@ -214,7 +214,7 @@ _open_group(_category, _name, _action:="enter")
     If _action = copy
     {
       Send !c
-      WinWait, Query Builder - ,,10
+      WinWait, Query Builder - ,,5
       if ErrorLevel
         Return 0
       WinClose, Group Manager
