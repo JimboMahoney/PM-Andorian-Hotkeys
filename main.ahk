@@ -48,7 +48,8 @@ copy_to_clipboard()
 StringUpper clipboard,clipboard ;convert to uppercase
 StringReplace clipboard,clipboard,% chr(35),% chr(37)"23",all ;Some cameras use # in their part code, but BoM lookup uses the ASCII code %23 instead.
 StringReplace clipboard,clipboard,% chr(43),% chr(37)"2B",all ;Some parts (e.g. GBUF) use + in their part codes, but BoM uses ASCII code %2B instead.
-clipboard := RegexReplace(clipboard, "[[:blank:]]") ; remove tabs and spaces
+StringReplace clipboard,clipboard,% chr(47),% chr(37)"2F",all ;Some parts use / in their part codes, but BoM uses ASCII code %2F instead.
+;clipboard := RegexReplace(clipboard, "[[:blank:]]") ; remove tabs and spaces
 step_progress_bar()
 Run http://andor.andortech.net/cm.mccann/BOM and COGS/?whproduct=10%clipboard%&action=bom
 
