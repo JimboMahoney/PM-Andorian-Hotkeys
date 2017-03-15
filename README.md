@@ -50,7 +50,7 @@ Usage
 
 Suggestions should be posted as issues here => https://github.com/JimboMahoney/PM-Andorian-Hotkeys/issues
 
-[Version = 1st March 2017]
+[Version = 15th March 2017]
 
 Installation
 ------------
