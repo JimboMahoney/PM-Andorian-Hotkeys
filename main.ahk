@@ -390,12 +390,12 @@ Goto, end_hotkey
   Send {tab}{down}{tab}%part%{tab}{Enter}
   }
   
-  ; If there are no matches for level 1 codes, assume the selection is
-  ; a level 10 code.
+  ; If there were matches for level 1 codes, goto End. 
+  ; Otherwise, a level 10 codes has been matched, in which case the next block of code will be executed. 
   if matches !=
-    Goto, End_hotkey  ; level 1 code was in clipboard, so end hotkey.
+   Goto, End_hotkey  
   
-  clipboard:=strip(clipboard)
+  ;clipboard:=strip(clipboard)
   IfWinExist, Stock Requests
 		{
 		WinActivate
@@ -418,7 +418,9 @@ Goto, end_hotkey
   Sleep,2000
   step_progress_bar()
   SetKeyDelay 10
-  Send {tab}{down}{down}{tab}%clipboard%{tab}{tab}{Enter}
+  Send {tab}{down}{down}{tab}
+  SendRaw %clipboard% ;Needed SendRaw to deal with special characters like # in some iXons
+  Send {tab}{tab}{Enter}
   Goto, end_hotkey   
   
   
