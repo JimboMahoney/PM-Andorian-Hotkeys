@@ -54,10 +54,23 @@ Suggestions should be posted as issues here => https://github.com/JimboMahoney/P
 
 Installation
 ------------
-*Google Chrome* is recommended, since it is used for development and testing.
+*Google Chrome* is recommended, since it is used for development and testing. 
+
+Basic instructions / explanations for installation
+--------------------------------------------------
+
+1. 	Download and install AutoHotkey. This program will run in the background and provide the basic hotkey functionality.
+2.  Register on this site (GitHub) for an account. This website is a way of sharing code with other people.
+3.	Download and install GitHub for Windows. GitHub allows sharing and synchronisation of the specific code for our shortcut keys.
+4. 	Get AutoHotkey to start up with Windows.
+
+Detailed instructions for installation
+--------------------------------------
+
+Suggest opening the below links in a new tab to keep these instructions visible:
 
 
-1.  Install <a target="_blank" href="http://ahkscript.org/" >Autohotkey</a> (Big blue Download button on top right).
+1.  Download and Install <a target="_blank" href="https://autohotkey.com/download/" >AutoHotkey</a>. (Big blue "Download AutoHotkey Installer" button)
 
 2.  Install <a href="http://windows.github.com/" target="_blank">GitHub for Windows</a>
 

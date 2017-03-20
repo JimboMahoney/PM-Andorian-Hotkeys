@@ -370,6 +370,7 @@ Goto, end_hotkey
 		WinActivate
 		Send ^t
 		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
+		Sleep 1000
 		}
 	Else
 		{
@@ -384,7 +385,7 @@ Goto, end_hotkey
     }
   WinActivate
   ;while (A_Cursor = "AppStarting")
-  Sleep,2000
+  Sleep,1000
   step_progress_bar()
   SetKeyDelay 10
   Send {tab}{down}{tab}%part%{tab}{Enter}
@@ -401,6 +402,7 @@ Goto, end_hotkey
 		WinActivate
 		Send ^t
 		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
+		Sleep 1000
 		}
 	Else
 		{
@@ -415,7 +417,7 @@ Goto, end_hotkey
     }
   WinActivate
   ;while (A_Cursor = "AppStarting")
-  Sleep,2000
+  Sleep,1000
   step_progress_bar()
   SetKeyDelay 10
   Send {tab}{down}{down}{tab}
