@@ -50,7 +50,7 @@ Usage
 
 Suggestions should be posted as issues here => https://github.com/JimboMahoney/PM-Andorian-Hotkeys/issues
 
-[Version = 15th March 2017]
+[Version = 20th March 2017]
 
 Installation
 ------------
@@ -59,7 +59,7 @@ Installation
 Basic instructions / explanations for installation
 --------------------------------------------------
 
-1. 	Download and install AutoHotkey. This program will run in the background and provide the basic hotkey functionality.
+1. 	Download and install AutoHotkey. We will set this program to run in the background. It provides the basic hotkey functionality.
 2.  Register on this site (GitHub) for an account. This website is a way of sharing code with other people.
 3.	Download and install GitHub for Windows. GitHub allows sharing and synchronisation of the specific code for our shortcut keys.
 4. 	Get AutoHotkey to start up with Windows.
