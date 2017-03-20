@@ -86,6 +86,9 @@ Suggest opening the below links in a new tab to keep these instructions visible:
 
 6.  Have the script startup automatically in Windows by
     making a shortcut to `main.ahk` (in the GitHub, Andorian Hotkeys directory) in your Windows start menu > Startup folder. This is probably easiest by RIGHT-clicking and dragging the main.ahk into the Start Menu, All Programs, Startup. When you let go of the right mouse button, select "Create Shortcut Here"
+	
+7. 	In the future, to update your local AutoHotkey scripts, you can run GitHub and Sync the repository:<br>
+<img src="https://cloud.githubusercontent.com/assets/7777844/24099463/509f98e2-0d67-11e7-93d0-277e90e4fbfe.png"
 
 
 Create your own hotkeys
