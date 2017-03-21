@@ -342,6 +342,7 @@ Goto, end_hotkey
   add_progress_step("Opening web page")
   add_progress_step("Querying part number")
   copy_to_clipboard()
+  clipboard = %clipboard% ; Trim left & right whitespaces
 
   matches =			; Clear old matches.
   
@@ -392,7 +393,7 @@ Goto, end_hotkey
   }
   
   ; If there were matches for level 1 codes, goto End. 
-  ; Otherwise, a level 10 codes has been matched, in which case the next block of code will be executed. 
+  ; Otherwise, a level 10 code has been matched, in which case the next block of code will be executed. 
   if matches !=
    Goto, End_hotkey  
   
