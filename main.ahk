@@ -51,7 +51,7 @@ StringReplace clipboard,clipboard,% chr(43),% chr(37)"2B",all ;Some parts (e.g. 
 StringReplace clipboard,clipboard,% chr(47),% chr(37)"2F",all ;Some parts use / in their part codes, but BoM uses ASCII code %2F instead.
 ;clipboard := RegexReplace(clipboard, "[[:blank:]]") ; remove tabs and spaces
 step_progress_bar()
-Run http://andor.andortech.net/cm.mccann/BOM and COGS/?whproduct=10%clipboard%&action=bom
+Run http://andor.oxinst.com/cm.mccann/BOM and COGS/?whproduct=10%clipboard%&action=bom
 
 
 WinWait, Shamrock Components,,5
@@ -68,20 +68,20 @@ WinActivate
 ;Send {tab 4}%clipboard%{tab}{Enter}
 Goto, end_hotkey
 
-;-----------------------------------------------------------------------
-; [Windows Key + i] Install Ticket search from SLX Account in clipboard 
-;-----------------------------------------------------------------------
+;-----------------------------------------------------------------------------------------------
+; [Windows Key + i] Install Ticket search from SLX Account in clipboard or highlighted selection
+;-----------------------------------------------------------------------------------------------
 #i::
 create_progress_bar("System Ticket search")
 add_progress_step("Searching for System Ticket...")
-;copy_to_clipboard()
+copy_to_clipboard()
 step_progress_bar()
 open_systemticket()
 Goto, end_hotkey
 
-;------------------------------------------------------------------------------
+;---------------------------------------------------------------------------------
 ; [Windows Key + SHIFT + i] PS Install Ticket search from SLX Account in clipboard 
-;------------------------------------------------------------------------------
+;---------------------------------------------------------------------------------
 #+i::
 create_progress_bar("System Ticket search")
 add_progress_step("Searching for System Ticket...")
@@ -253,7 +253,7 @@ Goto, end_hotkey_with_error
   {
     step_progress_bar()
     order := sales_order%A_Index%
-    Run http://andor.andortech.net/cm.mccann/Sales Orders/dbSearch.asp?order_no=%order%
+    Run http://andor.oxinst.com/cm.mccann/Sales Orders/dbSearch.asp?order_no=%order%
   }
 
   ; If there are no matches for sales orders, assume the selection is
@@ -318,7 +318,7 @@ Goto, end_hotkey
   clipboard:=strip(clipboard)	; Remove whitespace, CR, LF, commas, etc.
   add_progress_step("Querying Sales Order '" . clipboard . "'")
   add_progress_step("Waiting for Enter Values window")
-  Run http://andor.andortech.net/reports/ViewReport.aspx?ReportPath=I:/Intranet/Reports/Sales+Information/Utilities/shipping_invoice_sub_report.rpt
+  Run http://andor.oxinst.com/reports/ViewReport.aspx?ReportPath=I:/Intranet/Reports/Sales+Information/Utilities/shipping_invoice_sub_report.rpt
   step_progress_bar()
   WinWait, Report Viewer,,5
   If ErrorLevel
@@ -507,7 +507,7 @@ add_progress_step("Querying part number")
 copy_to_clipboard()
 clipboard := RegexReplace(clipboard, "[[:blank:]]") ; remove tabs and spaces
 step_progress_bar()
-Run http://andor.andortech.net/cm.mccann/BOM and COGS/?whproduct=01%clipboard%&action=whereused
+Run http://andor.oxinst.com/cm.mccann/BOM and COGS/?action=whereused&whproduct=01%clipboard%
 
 
 WinWait, Shamrock Components,,5
