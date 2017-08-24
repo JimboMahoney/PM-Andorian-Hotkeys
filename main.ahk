@@ -46,6 +46,7 @@ add_progress_step("Opening web page")
 add_progress_step("Querying part number")
 copy_to_clipboard()
 StringUpper clipboard,clipboard ;convert to uppercase
+StringReplace clipboard,clipboard,% chr(37),% chr(37)"25",all ;Some parts use % in their part codes, but Intranet uses ASCII code %25 instead.
 StringReplace clipboard,clipboard,% chr(35),% chr(37)"23",all ;Some cameras use # in their part code, but BoM lookup uses the ASCII code %23 instead.
 StringReplace clipboard,clipboard,% chr(43),% chr(37)"2B",all ;Some parts (e.g. GBUF) use + in their part codes, but BoM uses ASCII code %2B instead.
 StringReplace clipboard,clipboard,% chr(47),% chr(37)"2F",all ;Some parts use / in their part codes, but BoM uses ASCII code %2F instead.
@@ -279,17 +280,55 @@ Goto, end_hotkey_with_error
   Send {Tab 3}%clipboard%{Enter}
   Goto, End_hotkey
   
-;---------------------------------------------------------------------------
-; [Windows Key + p] PriceList Update from clipboard or highlighted selection
-;---------------------------------------------------------------------------
+;--------------------------------------------------------------------------------
+; [Windows Key + p] Open PriceList Update from clipboard or highlighted selection
+;--------------------------------------------------------------------------------
 #p::
 create_progress_bar("PriceList update")
 add_progress_step("Opening web page")
 add_progress_step("Querying part number")
 copy_to_clipboard()
 clipboard := RegexReplace(clipboard, "[[:blank:]]") ; remove tabs and spaces
+StringUpper clipboard,clipboard ;convert to uppercase
+StringReplace clipboard,clipboard,% chr(37),% chr(37)"25",all ;Some parts use % in their part codes, but Intranet uses ASCII code %25 instead.
+StringReplace clipboard,clipboard,% chr(35),% chr(37)"23",all ;Some cameras use # in their part code, but BoM lookup uses the ASCII code %23 instead.
+StringReplace clipboard,clipboard,% chr(43),% chr(37)"2B",all ;Some parts (e.g. GBUF) use + in their part codes, but BoM uses ASCII code %2B instead.
+StringReplace clipboard,clipboard,% chr(47),% chr(37)"2F",all ;Some parts use / in their part codes, but BoM uses ASCII code %2F instead.
 step_progress_bar()
-Run http://andor.oxinst.com/sageutils/pricelist/index.asp?
+Run http://andor.oxinst.com/sageutils/pricelist/index.asp?product_code=%clipboard%
+
+
+;WinWait, PriceList Update,,5
+;if ErrorLevel
+;{
+;  progress_error(A_LineNumber)
+;  Goto, end_hotkey
+;}
+;WinActivate
+;;while (A_Cursor = "AppStarting")
+;  Sleep,500
+;step_progress_bar()
+;SetKeyDelay 10
+;Send {tab}%clipboard%{tab}{Enter}
+Goto, end_hotkey
+
+;------------------------------------------------------------------------------------------------
+; [Windows Key + CTRL + p] Add Prices to Pricelist Update from clipboard or highlighted selection
+;------------------------------------------------------------------------------------------------
+^#p::
+create_progress_bar("PriceList update")
+add_progress_step("Opening web page")
+add_progress_step("Querying part number")
+copy_to_clipboard()
+;clipboard := RegexReplace(clipboard, "[[:blank:]]") ; remove tabs and spaces
+StringUpper clipboard,clipboard ;convert to uppercase
+StringReplace clipboard,clipboard,% chr(37),% chr(37)"25",all ;Some parts use % in their part codes, but Intranet uses ASCII code %25 instead.
+StringReplace clipboard,clipboard,% chr(35),% chr(37)"23",all ;Some cameras use # in their part code, but BoM lookup uses the ASCII code %23 instead.
+StringReplace clipboard,clipboard,% chr(43),% chr(37)"2B",all ;Some parts (e.g. GBUF) use + in their part codes, but BoM uses ASCII code %2B instead.
+StringReplace clipboard,clipboard,% chr(47),% chr(37)"2F",all ;Some parts use / in their part codes, but BoM uses ASCII code %2F instead.
+StringSplit, Data, clipboard, %A_Tab% ; create array of data split by tabs
+step_progress_bar()
+Run http://andor.oxinst.com/sageutils/pricelist/index.asp?product_code=%data1%
 
 
 WinWait, PriceList Update,,5
@@ -303,7 +342,17 @@ WinActivate
   Sleep,500
 step_progress_bar()
 SetKeyDelay 10
-Send {tab}%clipboard%{tab}{Enter}
+Send {tab}{tab}{tab}%data5%
+sleep, 50
+Send {tab}%data6%
+sleep, 50
+Send {tab}%data7%
+sleep, 50
+Send {tab}%data8%
+sleep, 50
+Send {tab}%data9%
+sleep, 50
+Send {tab}{tab}{tab}{enter}
 Goto, end_hotkey
   
   
@@ -320,7 +369,7 @@ Goto, end_hotkey
   add_progress_step("Waiting for Enter Values window")
   Run http://andor.oxinst.com/reports/ViewReport.aspx?ReportPath=I:/Intranet/Reports/Sales+Information/Utilities/shipping_invoice_sub_report.rpt
   step_progress_bar()
-  WinWait, Report Viewer,,5
+  WinWait, Report Viewer,,10
   If ErrorLevel
   {
     progress_error(A_LineNumber, "Browser timeout")    
