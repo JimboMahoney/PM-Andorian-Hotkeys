@@ -133,7 +133,7 @@ if RMA_MENU = NONE_VALUE
   }
 }
 copy_to_clipboard()
-Run C:\vb6\Andor\Andor.exe
+Run C:\WIP net\WIP Tracking.exe
 WinWait, Login,,5
 if ErrorLevel
 {
@@ -144,7 +144,7 @@ else
   WinActivate
   Send %RMA_USER%{tab}%RMA_PASS%{tab}{Enter}
   
-  WinWait, Andor Technology,,5
+  WinWait, WIP Tracking,,5
   if ErrorLevel
   {
     return
@@ -156,7 +156,7 @@ else
     WinActivate
     Sleep 100
 	SetKeyDelay, 50
-    Send {Down}{Enter}{Down}{Enter}{Down}{Enter}
+    Send {Down}{Downn}{Right}{Down}{Right}{Down}{Enter}
     Sleep 100
 	StringReplace, clipboard, clipboard,MA ;Change/remove "MA" from e.g. RMA12345 => R12345
 	StringReplace, clipboard, clipboard,[ ;Remove leading [ sometimes found in SLX RMA references
@@ -331,7 +331,7 @@ step_progress_bar()
 Run http://andor.oxinst.com/sageutils/pricelist/index.asp?product_code=%data1%
 
 
-WinWait, PriceList Update,,5
+WinWait, PriceList Update,,10
 if ErrorLevel
 {
   progress_error(A_LineNumber)
@@ -339,7 +339,7 @@ if ErrorLevel
 }
 WinActivate
 ;while (A_Cursor = "AppStarting")
-  Sleep,500
+  Sleep,1000
 step_progress_bar()
 SetKeyDelay 10
 Send {tab}{tab}{tab}%data5%
@@ -427,7 +427,7 @@ Goto, end_hotkey
 		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
 		}
 
-  WinWait, Stock Requests,,5
+  WinWait, Stock Requests,,10
   if ErrorLevel
     {
     progress_error(A_LineNumber)
@@ -459,7 +459,7 @@ Goto, end_hotkey
 		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
 		}
 
-  WinWait, Stock Requests,,5
+  WinWait, Stock Requests,,10
   if ErrorLevel
     {
     progress_error(A_LineNumber)
