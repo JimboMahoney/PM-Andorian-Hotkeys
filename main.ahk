@@ -156,7 +156,7 @@ else
     WinActivate
     Sleep 100
 	SetKeyDelay, 50
-    Send {Down}{Downn}{Right}{Down}{Right}{Down}{Enter}
+    Send {Down}{Down}{Right}{Down}{Right}{Down}{Enter}
     Sleep 100
 	StringReplace, clipboard, clipboard,MA ;Change/remove "MA" from e.g. RMA12345 => R12345
 	StringReplace, clipboard, clipboard,[ ;Remove leading [ sometimes found in SLX RMA references
