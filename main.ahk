@@ -45,14 +45,15 @@ create_progress_bar("BOM search")
 add_progress_step("Opening web page")
 add_progress_step("Querying part number")
 copy_to_clipboard()
+
 StringUpper clipboard,clipboard ;convert to uppercase
 StringReplace clipboard,clipboard,% chr(37),% chr(37)"25",all ;Some parts use % in their part codes, but Intranet uses ASCII code %25 instead.
 StringReplace clipboard,clipboard,% chr(35),% chr(37)"23",all ;Some cameras use # in their part code, but BoM lookup uses the ASCII code %23 instead.
 StringReplace clipboard,clipboard,% chr(43),% chr(37)"2B",all ;Some parts (e.g. GBUF) use + in their part codes, but BoM uses ASCII code %2B instead.
 StringReplace clipboard,clipboard,% chr(47),% chr(37)"2F",all ;Some parts use / in their part codes, but BoM uses ASCII code %2F instead.
-;clipboard := RegexReplace(clipboard, "[[:blank:]]") ; remove tabs and spaces
+
 step_progress_bar()
-Run http://andor.oxinst.com/cm.mccann/BOM and COGS/?whproduct=10%clipboard%&action=bom
+Run http://intranet.andor.com/cm.mccann/BOM and COGS/?whproduct=10%clipboard%&action=bom
 
 
 WinWait, Shamrock Components,,5
@@ -232,6 +233,7 @@ Goto, end_hotkey_with_error
 #o::
   create_progress_bar("Sales Order search")
   copy_to_clipboard()
+  StringUpper clipboard,clipboard ;convert to uppercase
   matches =			; Clear old matches.
   
   ; there's no native function to parse several regex matches, so one has to
@@ -254,7 +256,7 @@ Goto, end_hotkey_with_error
   {
     step_progress_bar()
     order := sales_order%A_Index%
-    Run http://andor.oxinst.com/cm.mccann/Sales Orders/dbSearch.asp?order_no=%order%
+    Run http://intranet.andor.com/cm.mccann/Sales Orders/dbSearch.asp?order_no=%order%
   }
 
   ; If there are no matches for sales orders, assume the selection is
@@ -265,8 +267,8 @@ Goto, end_hotkey_with_error
   clipboard:=strip(clipboard)	; Remove whitespace, CR, LF, commas, etc.
   add_progress_step("Querying serial# '" . clipboard . "'")
   add_progress_step("Waiting for Enter Values window")
-  Run http://andor.oxinst.com/reports/ViewReport.aspx?ReportPath=I:/Intranet/Reports/Sales+Information/Utilities/Orders+with+serial+no.rpt
-  ;Run http://andor.oxinst.com/cm.mccann/Sales Orders/serialSearch.asp?serial_no=%clipboard% 
+  Run http://intranet.andor.com/reports/ViewReport.aspx?ReportPath=I:/Intranet/Reports/Sales+Information/Utilities/Orders+with+serial+no.rpt
+  ;Run http://intranet.andor.com/cm.mccann/Sales Orders/serialSearch.asp?serial_no=%clipboard% 
   step_progress_bar()
   WinWait, Report Viewer,,5
   If ErrorLevel
@@ -295,7 +297,7 @@ StringReplace clipboard,clipboard,% chr(35),% chr(37)"23",all ;Some cameras use 
 StringReplace clipboard,clipboard,% chr(43),% chr(37)"2B",all ;Some parts (e.g. GBUF) use + in their part codes, but BoM uses ASCII code %2B instead.
 StringReplace clipboard,clipboard,% chr(47),% chr(37)"2F",all ;Some parts use / in their part codes, but BoM uses ASCII code %2F instead.
 step_progress_bar()
-Run http://andor.oxinst.com/sageutils/pricelist/index.asp?product_code=%clipboard%
+Run http://intranet.andor.com/sageutils/pricelist/index.asp?product_code=%clipboard%
 
 
 ;WinWait, PriceList Update,,5
@@ -328,10 +330,10 @@ StringReplace clipboard,clipboard,% chr(43),% chr(37)"2B",all ;Some parts (e.g. 
 StringReplace clipboard,clipboard,% chr(47),% chr(37)"2F",all ;Some parts use / in their part codes, but BoM uses ASCII code %2F instead.
 StringSplit, Data, clipboard, %A_Tab% ; create array of data split by tabs
 step_progress_bar()
-Run http://andor.oxinst.com/sageutils/pricelist/index.asp?product_code=%data1%
+Run http://intranet.andor.com/sageutils/pricelist/index.asp?product_code=%data1%
 
 
-WinWait, PriceList Update,,10
+WinWait, PriceList Update,,20
 if ErrorLevel
 {
   progress_error(A_LineNumber)
@@ -367,7 +369,7 @@ Goto, end_hotkey
   clipboard:=strip(clipboard)	; Remove whitespace, CR, LF, commas, etc.
   add_progress_step("Querying Sales Order '" . clipboard . "'")
   add_progress_step("Waiting for Enter Values window")
-  Run http://andor.oxinst.com/reports/ViewReport.aspx?ReportPath=I:/Intranet/Reports/Sales+Information/Utilities/shipping_invoice_sub_report.rpt
+  Run http://intranet.andor.com/reports/ViewReport.aspx?ReportPath=I:/Intranet/Reports/Sales+Information/Utilities/shipping_invoice_sub_report.rpt
   step_progress_bar()
   WinWait, Report Viewer,,10
   If ErrorLevel
@@ -419,12 +421,12 @@ Goto, end_hotkey
 		{
 		WinActivate
 		Send ^t
-		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
+		Run http://intranet.andor.com/sageutils/stockrequests/incomplete/edit.asp
 		Sleep 1000
 		}
 	Else
 		{
-		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
+		Run http://intranet.andor.com/sageutils/stockrequests/incomplete/edit.asp
 		}
 
   WinWait, Stock Requests,,10
@@ -451,12 +453,12 @@ Goto, end_hotkey
 		{
 		WinActivate
 		Send ^t
-		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
+		Run http://intranet.andor.com/sageutils/stockrequests/incomplete/edit.asp
 		Sleep 1000
 		}
 	Else
 		{
-		Run http://andor.oxinst.com/sageutils/stockrequests/incomplete/edit.asp
+		Run http://intranet.andor.com/sageutils/stockrequests/incomplete/edit.asp
 		}
 
   WinWait, Stock Requests,,10
@@ -556,7 +558,7 @@ add_progress_step("Querying part number")
 copy_to_clipboard()
 clipboard := RegexReplace(clipboard, "[[:blank:]]") ; remove tabs and spaces
 step_progress_bar()
-Run http://andor.oxinst.com/cm.mccann/BOM and COGS/?action=whereused&whproduct=01%clipboard%
+Run http://intranet.andor.com/cm.mccann/BOM and COGS/?action=whereused&whproduct=01%clipboard%
 
 
 WinWait, Shamrock Components,,5

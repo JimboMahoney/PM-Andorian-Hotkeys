@@ -98,11 +98,12 @@ open_systemticket()
       return
     WinMenuSelectItem,,,Lookup,Tickets,Advanced Lookup
 	SetKeyDelay, -1
-	WinWait, Advanced Lookup,,5
+	WinWait, Advanced Lookup: Ticket,,5
     if ErrorLevel
         return
     WinActivate
     Send {tab}
+	SetKeyDelay, 1
 	Send %clipboard%
 	Sleep 500
 	SetKeyDelay, 50
@@ -119,12 +120,13 @@ open_systemticket()
 	Send {tab}
 	SetKeyDelay, -1
 	Send INSTALLATION
-	SetKeyDelay, 10
-	WinWait, Advanced Lookup,,5
-    if ErrorLevel
-        return
-    WinActivate
-    Send !o
+	Send {enter}
+	;SetKeyDelay, 10
+	;WinWait, Advanced Lookup,,5
+    ;if ErrorLevel
+    ;    return
+    ;WinActivate
+    ;Send !o
 }
 
 open_PSsystemticket()
